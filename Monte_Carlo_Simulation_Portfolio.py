@@ -10,10 +10,16 @@ from datetime import timedelta
 t=[]
 w=[]
 nt = int(input('Insert number of assets:'))
+num_simulations=int(input('Insert number of simulations:'))
+num_steps=int(input('Insert number of steps:'))
+
+
+starting_wealth=100
+
 
 for i in range(nt):
     ticker = str(input('''Insert ticker of the asset number ''' + str(i) + ':'))
-    weight= float(input('''Insert weight of the asset  ''' + ticker + ':'))
+    weight= float(input('''Insert weight of the asset (e.g. 0.5)  ''' + ticker + ':'))
     t.append(ticker)
     w.append(weight)
 
@@ -35,9 +41,6 @@ for x in t:
     
     Matrix_returns[x]=V_returns     
     
-num_simulations=10000
-num_days=100
-starting_wealth=100
 
 MC=[]
 end_wealth=[]
@@ -52,7 +55,7 @@ for i in range(0, num_simulations):
     
     
     for x in t:
-        Bootstrap_returns[x]=(np.random.choice(Matrix_returns[x], num_days))
+        Bootstrap_returns[x]=(np.random.choice(Matrix_returns[x], num_steps))
         
     for i in range(len(Bootstrap_returns)):
         Daily_return=0.0
