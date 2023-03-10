@@ -70,7 +70,7 @@ for i in range(0, num_simulations):
         d=TS[i]*Daily_returns[i]
         TS.append(d)
    
-    df=pd.DataFrame(index=range(num_days+1), data={'TS':TS} )
+    df=pd.DataFrame(index=range(num_steps+1), data={'TS':TS} )
     MC.append(df)
     plt.plot(TS)
     end_wealth.append(TS[len(TS)-1])
